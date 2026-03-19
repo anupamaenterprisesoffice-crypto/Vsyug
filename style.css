@@ -96,3 +96,21 @@ canvas{
 @keyframes fade{from{opacity:0}to{opacity:1}}
 
 .glow{text-shadow:0 0 15px cyan}
+
+canvas {
+  background: rgba(0,0,0,0.8); /* dark canvas like your glassy cards */
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0,255,255,0.3); /* subtle glow */
+}
+
+.stock {
+  margin-bottom: 20px; /* space between companies */
+}
+
+.stock h4 {
+  color: white;
+}
+
+.stock h2 {
+  color: lime; /* price pops like your theme */
+}
