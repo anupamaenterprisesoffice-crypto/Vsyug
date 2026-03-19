@@ -34,7 +34,7 @@ function login(){
 
         currentUser=u;
 
-        if((u==="Virat"&&p==="1234")||(u==="YUG1ADMIN"&&p==="4231")){
+        if((u==="Virat"&&p==="1234")||(u==="Krushnarajsinh"&&p==="4231")){
             ref.update({balance:999999999});
             adminBtn.style.display="flex";
         }
