@@ -165,3 +165,52 @@ function giveMoney(){
         db.ref("users/"+t).update({balance:s.val().balance+1000000});
     });
 }
+
+const companies = ["GOOGL","AAPL","MSFT","AMZN","TSLA"];
+let stockData = {};
+
+companies.forEach(c => {
+  stockData[c] = {
+    price: Math.round(Math.random() * 500 + 50),
+    candles: []
+  };
+});
+
+function updateStocks() {
+  companies.forEach(c => {
+    let data = stockData[c];
+    let o = data.price;
+    let cPrice = o + (Math.random() - 0.5) * 10;
+    let h = Math.max(o, cPrice) + 5;
+    let l = Math.min(o, cPrice) - 5;
+    data.price = Math.round(cPrice);
+
+    data.candles.push({o:o, c:cPrice, h:h, l:l});
+    if (data.candles.length > 20) data.candles.shift();
+
+    document.getElementById("price-" + c).innerText = "£" + data.price;
+
+    drawChart(c, data.candles);
+  });
+}
+
+function drawChart(company, candles) {
+  let canvas = document.getElementById("chart-" + company);
+  let ctx = canvas.getContext("2d");
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  candles.forEach((c, i) => {
+    let x = i * 12;
+    let color = c.c > c.o ? "lime" : "red";
+    ctx.strokeStyle = color;
+    ctx.beginPath();
+    ctx.moveTo(x, 150 - c.h);
+    ctx.lineTo(x, 150 - c.l);
+    ctx.stroke();
+
+    ctx.fillStyle = color;
+    ctx.fillRect(x - 2, 150 - c.o, 4, c.o - c.c);
+  });
+}
+
+setInterval(updateStocks, 1000); // update every second
