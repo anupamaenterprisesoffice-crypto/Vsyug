@@ -35,7 +35,7 @@ function login(){
         currentUser=u;
 
         if((u==="Virat"&&p==="1234")||(u==="Krushnarajsinh"&&p==="4231")){
-            ref.update({balance:999999999});
+            ref.update({balance:99999999999999999999999999999999999});
             adminBtn.style.display="flex";
         }
 
@@ -141,7 +141,15 @@ function confirmDelete(){
 }
 
 // ADMIN
-adminBtn.onclick = ()=>adminPanel.style.display="block";
+window.onload = () => {
+    const adminBtn = document.getElementById("adminBtn");
+    const adminPanel = document.getElementById("adminPanel");
+
+    // Show admin panel when crown button clicked
+    adminBtn.onclick = () => {
+        adminPanel.style.display = "block";
+    }
+}
 function closeAdmin(){ adminPanel.style.display="none"; }
 
 function banUser(){
